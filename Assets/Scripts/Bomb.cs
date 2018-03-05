@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bomb : MonoBehaviour {
 	public GameObject explosionPrefab;
 	public LayerMask levelMask;
+	public Player playerDropped;
 	public bool exploded = false;
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class Bomb : MonoBehaviour {
 
 	void Explode() {
 		exploded = true;
+		playerDropped.bombsOut--;
 		Instantiate (explosionPrefab, transform.position, Quaternion.identity);
 		StartCoroutine (CreateExplosions (Vector3.forward));
 		StartCoroutine (CreateExplosions (Vector3.right));

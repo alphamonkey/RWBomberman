@@ -45,10 +45,10 @@ public class Player : MonoBehaviour
     public bool canMove = true;
     //Can the player move?
 
-    private int bombs = 2;
+    private int bombs = 3;
     //Amount of bombs the player has left to drop, gets decreased as the player
     //drops a bomb, increases as an owned bomb explodes
-
+	public int bombsOut = 0;
     //Prefabs
     public GameObject bombPrefab;
 	public GlobalStateManager globalManager;
@@ -176,12 +176,14 @@ public class Player : MonoBehaviour
     /// </summary>
     private void DropBomb ()
     {
-        if (bombPrefab)
+        if (bombPrefab && bombsOut < bombs)
         { //Check if bomb prefab is assigned first
 			Vector3 bombVector = new Vector3(Mathf.RoundToInt(myTransform.position.x), myTransform.position.y,
 				Mathf.RoundToInt(myTransform.position.z));
-			Instantiate(bombPrefab, bombVector, bombPrefab.transform.rotation);
-
+			GameObject b = Instantiate (bombPrefab, bombVector, bombPrefab.transform.rotation);
+			Bomb bomb = b.GetComponent<Bomb>();
+			bomb.playerDropped = this;
+			bombsOut++;
         }
     }
 
