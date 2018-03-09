@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CameraTricks.cs" />
      <Compile Include="Assets\Scripts\Bomb.cs" />
      <Compile Include="Assets\Scripts\DestroySelf.cs" />
      <Compile Include="Assets\Scripts\DisableTriggerOnPlayerExit.cs" />

@@ -51,6 +51,12 @@ public class GlobalStateManager : MonoBehaviour
 				Debug.Log ("Player 2 wins");
 			} else {
 				Debug.Log ("Player 1 wins");
+				GameObject camera = Camera.current.gameObject;
+
+				CameraTricks cameraScript = camera.GetComponent<CameraTricks> ();
+
+				cameraScript.StartWinAnimation (GameObject.Find ("Player 1"));
+
 			}
 		} else {
 			Debug.Log ("Draw");
